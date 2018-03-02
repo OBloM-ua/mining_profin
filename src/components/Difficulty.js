@@ -14,12 +14,8 @@ class Difficulty extends Component {
 
     componentDidMount() {
         getDifficulty()
-            .done(data => {
-                this.setState({difficulty: data.difficulty})
-            })
-            .fail(() => {
-                this.setState({difficulty: "error"})
-            });
+            .done(data => {this.setState({difficulty: data.difficulty})})
+            .fail(() => {this.setState({difficulty: "error"})})
     }
 
 
@@ -32,8 +28,6 @@ class Difficulty extends Component {
                 <p>
                     Current Difficulty: {this.state.difficulty}
                 </p>
-
-
             </div>
         );
     }
