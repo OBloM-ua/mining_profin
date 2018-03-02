@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../App.css';
-import {getDifficulty} from "../actions/ajaxRequests";
+import {getInfo} from "../actions/ajaxRequests";
 
 
 class Body extends Component {
@@ -10,12 +10,13 @@ class Body extends Component {
         super(props);
         this.state = {
             difficulty: '',
-            power: ''
+            power: '13.5',
+
         };
     }
 
     componentDidMount() {
-        getDifficulty()
+        getInfo()
             .done(data => {
                 this.setState({difficulty: data.difficulty})
             })
@@ -28,11 +29,18 @@ class Body extends Component {
         this.setState({power: event.target.value})
     }
 
-    getProfit() {
-        return 12.5 * 86400/((parseFloat(this.state.difficulty) * 4294967296)/ (parseFloat(this.state.power)*1000000000000));
-         // return Math.pow(2, 32);
+    get24Profit() {
+        return 12.5 * 86400 / ((parseFloat(this.state.difficulty) * Math.pow(2,32)) / (parseFloat(this.state.power) * Math.pow(10,12)));
     }
-//86,400 / (difficulty * 2^32 / hashrate)
+
+    getMonthProfit() {
+        return 12.5 * 86400 * 30 / ((parseFloat(this.state.difficulty) * Math.pow(2,32)) / (parseFloat(this.state.power) * Math.pow(10,12)));
+    }
+
+    get365Profit() {
+        return 12.5 * 86400 * 365 / ((parseFloat(this.state.difficulty) * Math.pow(2,32)) / (parseFloat(this.state.power) * Math.pow(10,12)));
+    }
+
     render() {
         return (
 
@@ -44,15 +52,20 @@ class Body extends Component {
 
                     <label>
                         Hashing Power in Th/s: <input type="number"
-                                              value={this.state.power}
-                                              onChange={this.powerHandler.bind(this)}/>
+                                                      value={this.state.power}
+                                                      onChange={this.powerHandler.bind(this)}/>
                     </label>
                     <p>
-                        Profit per 24h : {this.getProfit()}
+                        Profit per 24h : {this.get24Profit()}
+                    </p>
+                    <p>
+                        Profit per Month : {this.getMonthProfit()}
+                    </p>
+                    <p>
+                        Profit per Year : {this.get365Profit()}
                     </p>
 
                 </div>
-
             </div>
         );
     }

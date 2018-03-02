@@ -1,11 +1,10 @@
 import $ from 'jquery';
 
-export function getDifficulty() {
+export function getInfo() {
     return $.ajax({
         url: 'https://api.blockchain.info/stats',
         type: 'GET',
-        data: {cors: true},
-        dataType: 'json'
+        dataType: 'json',
+        data: {cors: true}
     });
-
 }
