@@ -9,7 +9,7 @@ class Body extends Component {
 
                 <div className="Body">
                     <Difficulty/>
-                    <form id={"HashPower"}>
+                    <form>
                         <label>
                             Hashing Power:
                             <input type="number" min="0" name="Th/s"/>

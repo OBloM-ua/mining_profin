@@ -14,8 +14,12 @@ class Difficulty extends Component {
 
     componentDidMount() {
         getDifficulty()
-            .done(data => {this.setState({difficulty: data.difficulty})})
-            .fail(() => {this.setState({difficulty: "error"})})
+            .done(data => {
+                this.setState({difficulty: data.difficulty})
+            })
+            .fail(() => {
+                this.setState({difficulty: "error"})
+            })
     }
 
 
