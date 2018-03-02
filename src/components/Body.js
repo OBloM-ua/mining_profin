@@ -29,9 +29,10 @@ class Body extends Component {
     }
 
     getProfit() {
-        return parseFloat(this.state.difficulty) * parseFloat(this.state.power);
+        return 12.5 * 86400/((parseFloat(this.state.difficulty) * 4294967296)/ (parseFloat(this.state.power)*1000000000000));
+         // return Math.pow(2, 32);
     }
-
+//86,400 / (difficulty * 2^32 / hashrate)
     render() {
         return (
 
@@ -42,12 +43,12 @@ class Body extends Component {
                     </p>
 
                     <label>
-                        Hashing Power: <input type="number"
+                        Hashing Power in Th/s: <input type="number"
                                               value={this.state.power}
                                               onChange={this.powerHandler.bind(this)}/>
                     </label>
                     <p>
-                        Profit : {this.getProfit()}
+                        Profit per 24h : {this.getProfit()}
                     </p>
 
                 </div>
