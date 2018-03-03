@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../App.css';
 import {getInfo} from "../actions/ajaxRequests";
+import TickerList from "./TickerList";
 
 
 class Body extends Component {
@@ -64,7 +65,7 @@ class Body extends Component {
                     <p>
                         Profit per Year : {this.get365Profit()}
                     </p>
-
+                    <TickerList />
                 </div>
             </div>
         );
