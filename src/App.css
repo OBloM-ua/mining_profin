@@ -38,7 +38,7 @@
 
 .Body {
     text-align: left;
-    margin-left: 20%;
+    margin-left: 5%;
 }
 
 .TickerList {
@@ -47,4 +47,7 @@
 
 .Ticker {
     background-color: chocolate;
+}
+.EnergieTeil{
+    background-color: aliceblue;
 }
