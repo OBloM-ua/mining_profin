@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import '../App.css';
 import {getInfo} from "../actions/ajaxRequests";
+import PropTypes from 'prop-types';
 
 
 class ProfitTeil extends Component {
@@ -58,7 +58,7 @@ class ProfitTeil extends Component {
                     Profit per 24h in coins : {this.get24Profit()}
                 </p>
                 <p>
-                    Profit per 24h in USD : {this.get24Profit()}
+                    Profit per 24h in USD : {this.get24Profit() * this.props.priceUsd}
                 </p>
                 <p>
                     Profit per Month : {this.getMonthProfit()}
@@ -72,3 +72,9 @@ class ProfitTeil extends Component {
 }
 
 export default ProfitTeil;
+
+
+
+ProfitTeil.propTypes = {
+    priceUsd: PropTypes.number.isRequired,
+};

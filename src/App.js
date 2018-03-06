@@ -1,20 +1,32 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Body from "./components/Body";
-import TickerList from "./components/TickerList";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Body, {CURRENCY_TYPE} from "./components/Body";
+import Navbar from "./components/Navbar";
+
 
 class App extends Component {
 
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Bitcoin profit calculator</h1>
-                </header>
-                <TickerList/>
-                <Body/>
+                <Navbar/>
+                <Router>
+                    <Switch>
+                        <Route exact path="/" component={() => {
+                            return <Body currencyType={CURRENCY_TYPE.BTC}/>
+                        }}/>
+
+
+                        <Route path="/btc" component={() => {
+                            return <Body currencyType={CURRENCY_TYPE.BTC}/>
+                        }}/>
+                        <Route path="/ltc" component={() => {
+                            return <Body currencyType={CURRENCY_TYPE.LTC}/>
+                        }}/>
+                    </Switch>
+                </Router>
+
+
             </div>
         );
     }
